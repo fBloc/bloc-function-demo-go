@@ -186,12 +186,7 @@ fi
 
 # Guide users to access the front-end address
 echo "******************************"
-echo "All ready, Visit http://localhost:8083/ to visit bloc UI"
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	# Mac OSX
-	open http://localhost:8083/
-elif [[ "$OSTYPE" == "linux"* ]]; then
-	# Linux
-	xdg-open http://localhost:8083/
-fi
+echo "All ready!"
+echo "login user: bloc"
+echo "login password: maytheforcebewithyou"
+echo "******************************"
