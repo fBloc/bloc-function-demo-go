@@ -1,11 +1,12 @@
 package stock_price_monitor
 
 import (
-	"bloc-examples/go/stock/bloc_node"
-	"bloc-examples/go/stock/pkg/compare_operator"
-	"bloc-examples/go/stock/pkg/realtime_price"
 	"context"
+	"encoding/json"
 	"fmt"
+	"stock/bloc_node"
+	"stock/pkg/compare_operator"
+	"stock/pkg/realtime_price"
 
 	bloc_client "github.com/fBloc/bloc-client-go"
 )
@@ -197,6 +198,7 @@ func (sPM *StockPriceMonitor) Run(
 		ProgressMilestoneIndex: FinishedVisitRemoteApi4StockRealtimePrice.MilestoneIndex(),
 	}
 
+	stockCodeMapPriceByte, _ := json.Marshal(stockCodeMapPrice)
 	// hit true
 	if compare_operator.CompareFloat64(price, compareOperator, absolutePrice) {
 		logger.Infof("hit absolute price monitor")
@@ -220,7 +222,7 @@ func (sPM *StockPriceMonitor) Run(
 				"suc_msg":             sucMsg,
 				"match_rise":          matchRise,
 				"match_fall":          matchFall,
-				"stockCode_map_price": stockCodeMapPrice,
+				"stockCode_map_price": stockCodeMapPriceByte, // json type should return data after serialize
 			},
 		}
 		return
@@ -235,7 +237,7 @@ func (sPM *StockPriceMonitor) Run(
 			"suc_msg":             sucMsg,
 			"match_rise":          matchRise,
 			"match_fall":          matchFall,
-			"stockCode_map_price": stockCodeMapPrice,
+			"stockCode_map_price": stockCodeMapPriceByte, // json type should return data after serialize
 		},
 	}
 }

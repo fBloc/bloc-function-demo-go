@@ -3,20 +3,20 @@ package sleep
 type progressMileStone int
 
 const (
-	SucParsedParam progressMileStone = iota
-	StartSleep
-	FinishedSleep
+	ParsingParam progressMileStone = iota
+	Sleeping
+	Finish
 	maxMilestone
 )
 
 func (pMS progressMileStone) String() string {
 	switch pMS {
-	case SucParsedParam:
-		return "parse param suc"
-	case StartSleep:
-		return "start sleep"
-	case FinishedSleep:
-		return "finished sleep"
+	case ParsingParam:
+		return "parsing param"
+	case Sleeping:
+		return "sleeping"
+	case Finish:
+		return "finish"
 	}
 	return "unknown"
 }
@@ -28,7 +28,7 @@ func (pMS progressMileStone) MilestoneIndex() *int {
 
 func AllMileStones() []string {
 	ret := make([]string, 0, maxMilestone-1)
-	for i := SucParsedParam; i < maxMilestone; i++ {
+	for i := ParsingParam; i < maxMilestone; i++ {
 		ret = append(ret, progressMileStone(i).String())
 	}
 	return ret

@@ -1,8 +1,8 @@
 package bloc_node
 
 import (
-	"bloc-examples/go/stock/pkg/compare_operator"
-	"bloc-examples/go/stock/pkg/raise_or_fall"
+	"stock/pkg/compare_operator"
+	"stock/pkg/raise_or_fall"
 
 	bloc_client "github.com/fBloc/bloc-client-go"
 )

@@ -1,8 +1,8 @@
-module bloc-examples/go/stock
+module stock
 
 go 1.18
 
-require github.com/fBloc/bloc-client-go v0.0.0-20220517003104-d52f636bef0a
+require github.com/fBloc/bloc-client-go v0.0.0-20220521084026-84170ea98c97
 
 require (
 	github.com/dustin/go-humanize v1.0.0 // indirect
@@ -23,9 +23,9 @@ require (
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/streadway/amqp v1.0.0 // indirect
-	golang.org/x/crypto v0.0.0-20220517005047-85d78b3ac167 // indirect
-	golang.org/x/net v0.0.0-20220516155154-20f960328961 // indirect
-	golang.org/x/sys v0.0.0-20220513210249-45d2b4557a2a // indirect
+	golang.org/x/crypto v0.0.0-20220518034528-6f7dac969898 // indirect
+	golang.org/x/net v0.0.0-20220520000938-2e3eb7b945c2 // indirect
+	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 	golang.org/x/text v0.3.7 // indirect
 	gopkg.in/ini.v1 v1.66.4 // indirect
 )

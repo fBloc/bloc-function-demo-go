@@ -1,11 +1,11 @@
 package new_stock
 
 import (
-	"bloc-examples/go/stock/pkg/industry"
-	"bloc-examples/go/stock/pkg/stock_exchange"
 	"context"
 	"encoding/json"
 	"fmt"
+	"stock/pkg/industry"
+	"stock/pkg/stock_exchange"
 	"strings"
 	"time"
 

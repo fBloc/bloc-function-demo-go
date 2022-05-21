@@ -57,6 +57,9 @@ func (s *Sleep) Run(
 ) {
 	logger.Infof("start") // report log
 
+	progressReportChan <- bloc_client.HighReadableFunctionRunProgress{ // report progress_milestone
+		ProgressMilestoneIndex: ParsingParam.MilestoneIndex(),
+	}
 	sleepSeconds, err := ipts.GetIntValue(0, 0)
 	if err != nil {
 		errorMsg := fmt.Sprintf("get sleep_seconds from ipt failed: %v", err)
@@ -68,13 +71,10 @@ func (s *Sleep) Run(
 		}
 		return
 	}
-	progressReportChan <- bloc_client.HighReadableFunctionRunProgress{ // report progress_milestone
-		ProgressMilestoneIndex: SucParsedParam.MilestoneIndex(),
-	}
 
 	logger.Infof("start sleep %d seconds", sleepSeconds)
 	progressReportChan <- bloc_client.HighReadableFunctionRunProgress{
-		ProgressMilestoneIndex: StartSleep.MilestoneIndex(),
+		ProgressMilestoneIndex: Sleeping.MilestoneIndex(),
 	}
 	if sleepSeconds > 0 {
 		progressReportTicker := time.NewTicker(time.Second)
@@ -87,8 +87,9 @@ func (s *Sleep) Run(
 			select {
 			case <-progressReportTicker.C:
 				sleeppedSeconds++
+				// report log & progress percent every one second
 				logger.Infof("sleeped %d/%d seconds", sleeppedSeconds, sleepSeconds)
-				progressReportChan <- bloc_client.HighReadableFunctionRunProgress{ // report progress percent
+				progressReportChan <- bloc_client.HighReadableFunctionRunProgress{
 					Progress: float32(sleeppedSeconds*100) / float32(sleepSeconds),
 				}
 			case <-finishedTicker.C:
@@ -96,7 +97,7 @@ func (s *Sleep) Run(
 			}
 		}
 		progressReportChan <- bloc_client.HighReadableFunctionRunProgress{
-			ProgressMilestoneIndex: FinishedSleep.MilestoneIndex(),
+			ProgressMilestoneIndex: Finish.MilestoneIndex(),
 		}
 	}
 

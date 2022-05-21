@@ -1,10 +1,10 @@
 package phone_sms
 
 import (
-	"bloc-examples/go/stock/pkg/sms"
 	"context"
 	"encoding/json"
 	"fmt"
+	"stock/pkg/sms"
 
 	bloc_client "github.com/fBloc/bloc-client-go"
 )
