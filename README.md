@@ -39,8 +39,8 @@ This project has 2 missions：
         stockFunctionGroup.AddFunction("NewStockMonitor", "new stock monitor", &new_stock.NewStock{})
         stockFunctionGroup.AddFunction("PriceMonitor", "stock real time monitor", &stock_price_monitor.StockPriceMonitor{})
 
-        NoticeFunctionGroup := blocClient.RegisterFunctionGroup("Notice")
-        NoticeFunctionGroup.AddFunction("Sms", "phone short message notice", &phone_sms.SMS{})
+        NotifyFunctionGroup := blocClient.RegisterFunctionGroup("Notify")
+        NotifyFunctionGroup.AddFunction("Sms", "phone short message notify", &phone_sms.SMS{})
 
         ToolFunctionGroup := blocClient.RegisterFunctionGroup("Tool")
         ToolFunctionGroup.AddFunction("Sleep", "do sleep between nodes", &sleep.Sleep{})
