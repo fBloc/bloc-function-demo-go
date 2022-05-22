@@ -14,7 +14,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	serverComposeFile="docker-compose-bloc-server-mac.yml"
 elif [[ "$OSTYPE" == "linux"* ]]; then
 	# Linux
-	app_name="docker"
+	app_name="dockerd"
 	serverComposeFile="docker-compose-bloc-server-linux.yml"
 else
 	# tmp to just use linux. later should support windows
@@ -31,7 +31,7 @@ check_env() {
 	cd $(dirname $0); pwd
 
 	# check docker status
-	lsof -nP | grep LISTEN |grep $app_name
+	lsof -UnP |grep $app_name
 	if [ $? -eq 0 ]; then
 		echo "docker is ready"
 	else
