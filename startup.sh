@@ -144,9 +144,10 @@ start_web() {
 	while [[ try_amount > 0 ]]
 	do
 		docker-compose -f "$serverComposeFile" up -d
-		sleep 3
-		server_status=`docker-compose -f "$serverComposeFile" ps | grep bloc_server`
-		if [[ $server_status == *"Up"* ]]
+		sleep 5
+
+		RESULT=$(curl -s --location --request GET 'http://localhost:8080/api/v1/bloc')
+		if [[ $RESULT == *"Welcome aboard!"* ]]
 		then
 			echo "    bloc-server is up"
 			break
@@ -156,22 +157,11 @@ start_web() {
 		fi
 	done
 
-	echo "Checking whether bloc-server is valid"
-	RESULT=$(curl -s --location --request GET 'http://localhost:8080/api/v1/bloc')
-	if [[ $RESULT == *"Welcome aboard!"* ]]
-	then
-		echo "    bloc-server is valid"
-	else
-		echo "    bloc-server is not ready"
-		./shutdown.sh
-		exit 8
-	fi
-
 	# start bloc-web
 	echo "Starting bloc_web, yaml file: $frontComposeFile"
 	docker-compose -f "$frontComposeFile" up -d
 	server_status=`docker-compose -f "$frontComposeFile" ps | grep bloc_web`
-	if [[ $server_status == *"Up"* ]]
+	if [[ $server_status == *"Up"* ]] || [[ $server_status == *"running"* ]]
 	then
 		echo "    bloc_web is up"
 	fi
