@@ -1,6 +1,6 @@
 # bloc-function-demo-go
+[中文版](/README.zh-CN.md)
 
-## Project mission
 This project has 2 missions：
 1. Used by [run a local demo doc](https://fbloc.github.io/docs/runDemo/Go) which take you to deploy a bloc environment locally with some preset functions to let you try bloc. Those preset functions are provided by this project
 2. Bloc functions under this project are used as model for developer to learn how to deploy bloc function.
@@ -51,13 +51,13 @@ This project has 2 missions：
 
 
 ## What you can learn from each demo function
-If you have not read [basic doc](https://github.com/fBloc/bloc-client-go#readme). Plz read that first.
+> Please make sure you have already read [the basic doc](https://github.com/fBloc/bloc-client-go#readme) about bloc function before continue
 
 First of all, every bloc function implemented [BlocFunctionNodeInterface](https://github.com/fBloc/bloc-client-go/blob/main/function_interface.go#L10) And have unittest code. 
 
 Second, project's function node is developed only to demonstrate how to develope bloc function. So will not visit real data (like stock price...)
 
-Below list each function's unique features，all in common features will not be listed.
+Below list each function's unique features（in common features will not be listed）：
 1. sleep function. [code](/bloc_node/sleep/node.go); [unittest](/bloc_node/sleep/node_test.go)
     - this function is used to simulate a long run function。which means it should report more enough live log & progress msg to let user know the progress of it. In run() method you can see
         - report log & progress percent
