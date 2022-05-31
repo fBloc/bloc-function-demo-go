@@ -34,5 +34,10 @@ func main() {
 	ToolFunctionGroup := blocClient.RegisterFunctionGroup("Tool")
 	ToolFunctionGroup.AddFunction("Sleep", "do sleep between nodes", &sleep.Sleep{})
 
-	blocClient.Run()
+	// you can start multi bloc client to run concurrently
+	for i := 0; i < 1; i++ {
+		go blocClient.Run()
+	}
+	forever := make(chan struct{})
+	<-forever
 }
